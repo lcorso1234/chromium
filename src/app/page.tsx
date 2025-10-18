@@ -354,19 +354,22 @@ export default function Home() {
         {/* Mobile Menu Popup */}
         {mobileMenuOpen && (
           <div className="lg:hidden fixed bottom-32 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md" id="mobile-primary-nav">
-            <div className="bg-gradient-to-br from-blue-900/95 to-blue-700/95 backdrop-blur-xl border-2 border-blue-400/30 rounded-3xl p-6 shadow-2xl">
+            <div className="bg-gradient-to-br from-blue-900/95 to-blue-700/95 backdrop-blur-xl border-2 border-blue-400/30 p-6 shadow-2xl" style={{ borderRadius: '18px' }}>
               <div className="grid grid-cols-2 gap-4" role="menu" aria-label="Mobile navigation links">
-                <a href="#home" className="bg-blue-800/60 backdrop-blur-sm border-2 border-blue-400/40 rounded-2xl py-6 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-transform">
+                <a href="#home" onClick={() => setMobileMenuOpen(false)} className="bg-blue-800/60 backdrop-blur-sm border-2 border-blue-400/40 py-6 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-transform" style={{ borderRadius: '18px' }}>
                   Home
                 </a>
-                <a href="#about" className="bg-blue-800/60 backdrop-blur-sm border-2 border-blue-400/40 rounded-2xl py-6 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-transform">
-                  About Us
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="bg-blue-800/60 backdrop-blur-sm border-2 border-blue-400/40 py-6 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-transform" style={{ borderRadius: '18px' }}>
+                  About
                 </a>
-                <a href="#services" className="bg-blue-800/60 backdrop-blur-sm border-2 border-blue-400/40 rounded-2xl py-6 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-transform">
-                  Services
+                <a href="#videos" onClick={() => setMobileMenuOpen(false)} className="bg-blue-800/60 backdrop-blur-sm border-2 border-blue-400/40 py-6 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-transform" style={{ borderRadius: '18px' }}>
+                  Videos
                 </a>
-                <a href="#contact" className="bg-blue-800/60 backdrop-blur-sm border-2 border-blue-400/40 rounded-2xl py-6 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-transform">
-                  Contact Us
+                <a href="#gallery" onClick={() => setMobileMenuOpen(false)} className="bg-blue-800/60 backdrop-blur-sm border-2 border-blue-400/40 py-6 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-transform" style={{ borderRadius: '18px' }}>
+                  Gallery
+                </a>
+                <a href="#connect" onClick={() => setMobileMenuOpen(false)} className="bg-blue-800/60 backdrop-blur-sm border-2 border-blue-400/40 py-6 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-transform col-span-2" style={{ borderRadius: '18px' }}>
+                  Connect
                 </a>
               </div>
             </div>
@@ -376,10 +379,10 @@ export default function Home() {
         {/* Navigation Menu */}
         <nav className="fixed bottom-[18px] left-1/2 -translate-x-1/2 z-50 max-w-5xl w-full mx-4" aria-label="Primary">
         {/* Desktop Menu */}
-        <div className="hidden lg:block bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 border-4 border-blue-700 shadow-2xl" style={{ borderRadius: '18px' }}>
+        <div className="hidden lg:block bg-gradient-to-r from-blue-900/80 via-blue-800/80 to-blue-900/80 backdrop-blur-xl border-4 border-blue-700/50 shadow-2xl" style={{ borderRadius: '18px' }}>
           <div className="flex items-center justify-between px-8 py-4 gap-6">
             <div className="flex items-center">
-              <button className="w-14 h-14 bg-blue-700 border-2 border-blue-600 rounded-xl flex items-center justify-center hover:bg-blue-600 transition-all shadow-lg group" aria-label="Go to saved projects">
+              <button className="w-14 h-14 bg-blue-700/90 border-2 border-blue-600/50 flex items-center justify-center hover:bg-blue-600/90 transition-all shadow-lg group" style={{ borderRadius: '18px' }} aria-label="Go to saved projects">
                 <svg className="w-8 h-8 text-blue-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
                 </svg>
@@ -387,26 +390,27 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-3">
-              <a href="#home" className="px-6 py-2.5 bg-transparent border-2 border-blue-700 rounded-full text-white font-bold text-sm tracking-wide hover:bg-blue-700 hover:border-blue-600 transition-all shadow-md hover:shadow-lg uppercase">
+              <a href="#home" className="px-6 py-2.5 bg-transparent border-2 border-blue-700/50 text-white font-bold text-sm tracking-wide hover:bg-blue-700/30 hover:border-blue-600/60 transition-all shadow-md hover:shadow-lg uppercase" style={{ borderRadius: '18px' }}>
                 HOME
               </a>
-              <a href="#about" className="px-6 py-2.5 bg-transparent border-2 border-blue-700 rounded-full text-white font-bold text-sm tracking-wide hover:bg-blue-700 hover:border-blue-600 transition-all shadow-md hover:shadow-lg uppercase">
+              <a href="#about" className="px-6 py-2.5 bg-transparent border-2 border-blue-700/50 text-white font-bold text-sm tracking-wide hover:bg-blue-700/30 hover:border-blue-600/60 transition-all shadow-md hover:shadow-lg uppercase" style={{ borderRadius: '18px' }}>
                 ABOUT
               </a>
-              <a href="#services" className="px-6 py-2.5 bg-transparent border-2 border-blue-700 rounded-full text-white font-bold text-sm tracking-wide hover:bg-blue-700 hover:border-blue-600 transition-all shadow-md hover:shadow-lg uppercase">
-                SERVICES
+              <a href="#videos" className="px-6 py-2.5 bg-transparent border-2 border-blue-700/50 text-white font-bold text-sm tracking-wide hover:bg-blue-700/30 hover:border-blue-600/60 transition-all shadow-md hover:shadow-lg uppercase" style={{ borderRadius: '18px' }}>
+                VIDEOS
               </a>
-              <a href="#portfolio" className="px-6 py-2.5 bg-transparent border-2 border-blue-700 rounded-full text-white font-bold text-sm tracking-wide hover:bg-blue-700 hover:border-blue-600 transition-all shadow-md hover:shadow-lg uppercase">
-                PORTFOLIO
+              <a href="#gallery" className="px-6 py-2.5 bg-transparent border-2 border-blue-700/50 text-white font-bold text-sm tracking-wide hover:bg-blue-700/30 hover:border-blue-600/60 transition-all shadow-md hover:shadow-lg uppercase" style={{ borderRadius: '18px' }}>
+                GALLERY
               </a>
-              <a href="#contact" className="px-6 py-2.5 bg-transparent border-2 border-blue-700 rounded-full text-white font-bold text-sm tracking-wide hover:bg-blue-700 hover:border-blue-600 transition-all shadow-md hover:shadow-lg uppercase">
-                CONTACT
+              <a href="#connect" className="px-6 py-2.5 bg-transparent border-2 border-blue-700/50 text-white font-bold text-sm tracking-wide hover:bg-blue-700/30 hover:border-blue-600/60 transition-all shadow-md hover:shadow-lg uppercase" style={{ borderRadius: '18px' }}>
+                CONNECT
               </a>
             </div>
 
             <div className="flex items-center gap-3">
               <button
-                className="w-12 h-12 bg-blue-400 border-2 border-blue-700 rounded-full flex items-center justify-center hover:bg-blue-300 transition-all shadow-lg hover:scale-110 group"
+                className="w-12 h-12 bg-blue-400/90 border-2 border-blue-700/50 flex items-center justify-center hover:bg-blue-300/90 transition-all shadow-lg hover:scale-110 group"
+                style={{ borderRadius: '18px' }}
                 aria-label="Share Chromium Industries services"
               >
                 <svg className="w-6 h-6 text-blue-900 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -414,7 +418,8 @@ export default function Home() {
                 </svg>
               </button>
               <button
-                className="w-12 h-12 bg-blue-400 border-2 border-blue-700 rounded-full flex items-center justify-center hover:bg-blue-300 transition-all shadow-lg hover:scale-110 group"
+                className="w-12 h-12 bg-blue-400/90 border-2 border-blue-700/50 flex items-center justify-center hover:bg-blue-300/90 transition-all shadow-lg hover:scale-110 group"
+                style={{ borderRadius: '18px' }}
                 aria-label="Contact Chromium Industries"
               >
                 <svg className="w-6 h-6 text-blue-900 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -422,7 +427,8 @@ export default function Home() {
                 </svg>
               </button>
               <button
-                className="w-12 h-12 bg-blue-400 border-2 border-blue-700 rounded-full flex items-center justify-center hover:bg-blue-300 transition-all shadow-lg hover:scale-110 group"
+                className="w-12 h-12 bg-blue-400/90 border-2 border-blue-700/50 flex items-center justify-center hover:bg-blue-300/90 transition-all shadow-lg hover:scale-110 group"
+                style={{ borderRadius: '18px' }}
                 aria-label="Open chat with Chromium Industries"
               >
                 <svg className="w-6 h-6 text-blue-900 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -434,9 +440,9 @@ export default function Home() {
         </div>
 
         {/* Mobile Menu */}
-        <div className="lg:hidden bg-gradient-to-r from-blue-900/90 to-blue-800/90 backdrop-blur-xl border-2 border-blue-400/30 rounded-3xl shadow-2xl" role="navigation" aria-label="Mobile navigation bar">
+        <div className="lg:hidden bg-gradient-to-r from-blue-900/80 to-blue-800/80 backdrop-blur-xl border-2 border-blue-400/30 shadow-2xl" style={{ borderRadius: '18px' }} role="navigation" aria-label="Mobile navigation bar">
           <div className="flex items-center justify-between px-6 py-4">
-            <button className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center hover:scale-110 transition-transform shadow-xl" aria-label="Share Chromium Industries services">
+            <button className="w-16 h-16 bg-gradient-to-br from-blue-600/90 to-blue-800/90 flex items-center justify-center hover:scale-110 transition-transform shadow-xl" style={{ borderRadius: '18px' }} aria-label="Share Chromium Industries services">
               <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                 <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
               </svg>
@@ -449,13 +455,14 @@ export default function Home() {
                 aria-expanded={mobileMenuOpen}
                 aria-controls="mobile-primary-nav"
                 aria-label={mobileMenuOpen ? "Close primary navigation" : "Open primary navigation"}
-                className="px-12 py-3 bg-gradient-to-br from-blue-700/80 to-blue-800/80 backdrop-blur-sm border-2 border-blue-400/50 rounded-2xl text-white font-bold text-lg hover:scale-105 transition-transform shadow-lg"
+                className="px-12 py-3 bg-gradient-to-br from-blue-700/80 to-blue-800/80 backdrop-blur-sm border-2 border-blue-400/50 text-white font-bold text-lg hover:scale-105 transition-transform shadow-lg"
+                style={{ borderRadius: '18px' }}
               >
                 MENU
               </button>
             </div>
 
-            <button className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center hover:scale-110 transition-transform shadow-xl" aria-label="Contact Chromium Industries">
+            <button className="w-16 h-16 bg-gradient-to-br from-blue-600/90 to-blue-800/90 flex items-center justify-center hover:scale-110 transition-transform shadow-xl" style={{ borderRadius: '18px' }} aria-label="Contact Chromium Industries">
               <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
@@ -480,59 +487,56 @@ export default function Home() {
           </div>
 
           {/* Content */}
-          <div className="relative z-10" style={{ padding: '3vw' }}>
+          <div className="relative z-10 p-10 sm:p-12 md:p-14 lg:p-12">
             {/* Top Right Description */}
-            <div className="flex justify-end" style={{ marginBottom: '3vw' }}>
-              <div className="text-right" style={{ maxWidth: '40vw' }}>
-                <p className="text-white leading-relaxed opacity-90" style={{ fontSize: '1.2vw' }}>
+            <div className="flex justify-end mb-10 sm:mb-12 md:mb-14 lg:mb-12">
+              <div className="text-right max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[40vw]">
+                <p className="text-white leading-relaxed opacity-90 text-base sm:text-lg md:text-xl lg:text-[1.2vw]">
                   For over 70 years, Chromium Industries has pioneered industrial roll engineering—pairing precision chrome plating, cylindrical grinding, thermal spray coatings, and full roll refurbishment to keep packaging, plastics, and converting production lines running with flawless quality.
                 </p>
               </div>
             </div>
 
             {/* Main Headline */}
-            <div style={{ marginTop: '8vw' }}>
-              <h1 id="hero-title" className="text-white font-black leading-none tracking-tight uppercase" style={{ fontSize: '6vw', maxWidth: '80vw' }}>
+            <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-20">
+              <h1 id="hero-title" className="text-white font-black leading-none tracking-tight uppercase text-5xl sm:text-6xl md:text-7xl lg:text-[6vw] max-w-full lg:max-w-[80vw]">
                 THE MOST POWERFUL ELEMENT IN PRECISION ROLL ENGINEERING IS EXCELLENCE.
               </h1>
             </div>
 
             {/* Bottom Info */}
-            <div className="flex justify-between items-end" style={{ marginTop: '10vw' }}>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8 sm:gap-6 mt-16 sm:mt-20 md:mt-24 lg:mt-20">
               <div className="text-white/80">
-                <p className="uppercase tracking-wider" style={{ fontSize: '0.8vw', marginBottom: '0.5vw' }}>World Leaders Since 1955</p>
-                <p className="font-bold" style={{ fontSize: '1.8vw' }}>CHROMIUM INDUSTRIES</p>
+                <p className="uppercase tracking-wider text-sm sm:text-base lg:text-[0.8vw] mb-2">World Leaders Since 1955</p>
+                <p className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[1.8vw]">CHROMIUM INDUSTRIES</p>
               </div>
 
               {/* Social Icons */}
-              <div className="flex" style={{ gap: '1vw' }}>
+              <div className="flex gap-5 sm:gap-6 lg:gap-[1vw]">
                 <a
                   href="https://www.facebook.com/ChromiumIndustries"
                   aria-label="Chromium Industries on Facebook"
-                  className="bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110"
-                  style={{ width: '3vw', height: '3vw' }}
+                  className="bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110 w-14 h-14 sm:w-16 sm:h-16 lg:w-[3vw] lg:h-[3vw]"
                 >
-                  <svg className="text-white" fill="currentColor" viewBox="0 0 24 24" style={{ width: '1.5vw', height: '1.5vw' }} aria-hidden="true">
+                  <svg className="text-white w-7 h-7 sm:w-8 sm:h-8 lg:w-[1.5vw] lg:h-[1.5vw]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                 </a>
                 <a
                   href="https://www.linkedin.com/company/chromium-industries"
                   aria-label="Chromium Industries on LinkedIn"
-                  className="bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110"
-                  style={{ width: '3vw', height: '3vw' }}
+                  className="bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110 w-14 h-14 sm:w-16 sm:h-16 lg:w-[3vw] lg:h-[3vw]"
                 >
-                  <svg className="text-white" fill="currentColor" viewBox="0 0 24 24" style={{ width: '1.5vw', height: '1.5vw' }} aria-hidden="true">
+                  <svg className="text-white w-7 h-7 sm:w-8 sm:h-8 lg:w-[1.5vw] lg:h-[1.5vw]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>
                 </a>
                 <a
                   href="https://twitter.com/ChromiumInd"
                   aria-label="Chromium Industries on X"
-                  className="bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110"
-                  style={{ width: '3vw', height: '3vw' }}
+                  className="bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110 w-14 h-14 sm:w-16 sm:h-16 lg:w-[3vw] lg:h-[3vw]"
                 >
-                  <svg className="text-white" fill="currentColor" viewBox="0 0 24 24" style={{ width: '1.5vw', height: '1.5vw' }} aria-hidden="true">
+                  <svg className="text-white w-7 h-7 sm:w-8 sm:h-8 lg:w-[1.5vw] lg:h-[1.5vw]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
                 </a>
@@ -542,8 +546,117 @@ export default function Home() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="relative px-[18px] pb-32" aria-labelledby="about-title">
+        <div
+          className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-700 to-blue-600 shadow-2xl"
+          style={{ borderRadius: '3vw', minHeight: 'calc(100vh - 220px)' }}
+        >
+          {/* Decorative Elements */}
+          <div className="absolute left-[4vw] bottom-[4vw] opacity-10" style={{ width: '24vw', height: '24vw' }}>
+            <svg viewBox="-30 -30 460 460" fill="none" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+              <circle cx="200" cy="200" r="170" stroke="white" strokeWidth="50" fill="none"/>
+              <circle cx="200" cy="200" r="110" stroke="white" strokeWidth="35" fill="none"/>
+              <path d="M80 80 L320 120 L280 320 L120 280 Z" fill="white" opacity="0.15"/>
+            </svg>
+          </div>
+
+          <div className="relative z-10 flex flex-col gap-12 p-10 sm:p-12 md:p-14 lg:p-12">
+            <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+              <div className="text-white lg:text-right lg:order-2">
+                <p className="uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/60 text-sm sm:text-base lg:text-[0.8vw] mb-2 sm:mb-3 lg:mb-[0.6vw]">
+                  About Chromium Industries
+                </p>
+                <h2 id="about-title" className="font-black leading-none uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[4vw] max-w-full lg:max-w-[34vw]">
+                  Seven Decades of Excellence
+                </h2>
+              </div>
+              <div className="max-w-full lg:max-w-[40vw] text-white/90 text-base sm:text-lg md:text-xl lg:text-[1.2vw] lg:order-1">
+                <p>
+                  Since 1955, we've been the trusted partner for precision roll engineering, delivering solutions that keep production lines running flawlessly across packaging, plastics, and converting industries worldwide.
+                </p>
+              </div>
+            </div>
+
+            {/* Core Values Grid */}
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+              <article className="group relative overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-8 shadow-2xl transition-transform hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(59,130,246,0.35)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-sky-500/20 to-cyan-600/20 opacity-60" />
+                <div className="relative z-10 flex flex-col gap-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-blue-400/90 rounded-full flex items-center justify-center" style={{ borderRadius: '18px' }}>
+                      <svg className="w-8 h-8 text-blue-900" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white">Quality First</h3>
+                  </div>
+                  <p className="text-white/80 text-base sm:text-lg leading-relaxed">
+                    Every roll, coating, and finish meets exacting specifications backed by certified inspection data and decades of metallurgical expertise.
+                  </p>
+                </div>
+              </article>
+
+              <article className="group relative overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-8 shadow-2xl transition-transform hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(59,130,246,0.35)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-blue-600/20 to-purple-700/20 opacity-60" />
+                <div className="relative z-10 flex flex-col gap-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-blue-400/90 rounded-full flex items-center justify-center" style={{ borderRadius: '18px' }}>
+                      <svg className="w-8 h-8 text-blue-900" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white">24/7 Response</h3>
+                  </div>
+                  <p className="text-white/80 text-base sm:text-lg leading-relaxed">
+                    Emergency roll repair and rapid turnaround services ensure your production lines stay running with minimal downtime.
+                  </p>
+                </div>
+              </article>
+
+              <article className="group relative overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-8 shadow-2xl transition-transform hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(59,130,246,0.35)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-teal-500/20 to-sky-500/20 opacity-60" />
+                <div className="relative z-10 flex flex-col gap-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-blue-400/90 rounded-full flex items-center justify-center" style={{ borderRadius: '18px' }}>
+                      <svg className="w-8 h-8 text-blue-900" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white">Innovation</h3>
+                  </div>
+                  <p className="text-white/80 text-base sm:text-lg leading-relaxed">
+                    Advanced thermal spray coatings, precision grinding technology, and continuous process improvements keep us at industry forefront.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            {/* Company Stats */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              <div className="text-center">
+                <p className="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-2">70+</p>
+                <p className="text-white/70 text-sm sm:text-base uppercase tracking-wider">Years in Business</p>
+              </div>
+              <div className="text-center">
+                <p className="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-2">24/7</p>
+                <p className="text-white/70 text-sm sm:text-base uppercase tracking-wider">Emergency Service</p>
+              </div>
+              <div className="text-center">
+                <p className="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-2">100%</p>
+                <p className="text-white/70 text-sm sm:text-base uppercase tracking-wider">Quality Certified</p>
+              </div>
+              <div className="text-center">
+                <p className="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-2">1000s</p>
+                <p className="text-white/70 text-sm sm:text-base uppercase tracking-wider">Rolls Serviced</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Video Library Section */}
-      <section id="insights" className="relative px-[18px] pb-32" aria-labelledby="insights-title">
+      <section id="videos" className="relative px-[18px] pb-32" aria-labelledby="videos-title">
         <div
           className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-700 to-blue-600 shadow-2xl"
           style={{ borderRadius: '3vw', minHeight: 'calc(100vh - 220px)' }}
@@ -557,9 +670,9 @@ export default function Home() {
             </svg>
           </div>
 
-          <div className="relative z-10 flex flex-col gap-12" style={{ padding: '3vw' }}>
+          <div className="relative z-10 flex flex-col gap-12 p-10 sm:p-12 md:p-14 lg:p-12">
             <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-[40vw] text-white/90" style={{ fontSize: '1.1vw' }}>
+              <div className="max-w-full lg:max-w-[40vw] text-white/90 text-base sm:text-lg md:text-xl lg:text-[1.2vw]">
                 <p>
                   Every service we deliver is backed by decades of specialized experience. Explore our video
                   briefs to see how Chromium Industries applies craft, technology, and speed to solve unique
@@ -567,10 +680,10 @@ export default function Home() {
                 </p>
               </div>
               <div className="text-white lg:text-right">
-                <p className="uppercase tracking-[0.4em] text-white/60" style={{ fontSize: '0.75vw', marginBottom: '0.5vw' }}>
+                <p className="uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/60 text-sm sm:text-base lg:text-[0.8vw] mb-2 sm:mb-3 lg:mb-[0.6vw]">
                   Video Library
                 </p>
-                <h2 id="insights-title" className="font-black leading-none uppercase" style={{ fontSize: '4vw', maxWidth: '34vw' }}>
+                <h2 id="videos-title" className="font-black leading-none uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[4vw] max-w-full lg:max-w-[34vw]">
                   Precision Engineering In Motion
                 </h2>
               </div>
@@ -712,8 +825,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Project Gallery Section */}
-      <section id="project-gallery" className="relative px-[18px] pb-32" aria-labelledby="gallery-title">
+      {/* Gallery Section */}
+      <section id="gallery" className="relative px-[18px] pb-32" aria-labelledby="gallery-title">
         <div
           className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-700 to-blue-600 shadow-2xl"
           style={{ borderRadius: '3vw', minHeight: 'calc(100vh - 220px)' }}
@@ -727,9 +840,9 @@ export default function Home() {
             </svg>
           </div>
 
-          <div className="relative z-10 flex flex-col gap-12" style={{ padding: '3vw' }}>
+          <div className="relative z-10 flex flex-col gap-12 p-10 sm:p-12 md:p-14 lg:p-12">
             <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-[40vw] text-white/90" style={{ fontSize: '1.1vw' }}>
+              <div className="max-w-full lg:max-w-[40vw] text-white/90 text-base sm:text-lg md:text-xl lg:text-[1.2vw]">
                 <p>
                   Every roll, sleeve, and engineered surface we deliver is purpose-built for demanding
                   production environments. Browse our gallery to see recent applications spanning the full
@@ -737,11 +850,11 @@ export default function Home() {
                 </p>
               </div>
               <div className="text-white lg:text-right">
-                <p className="uppercase tracking-[0.4em] text-white/60" style={{ fontSize: '0.75vw', marginBottom: '0.5vw' }}>
-                  Project Gallery
+                <p className="uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/60 text-sm sm:text-base lg:text-[0.8vw] mb-2 sm:mb-3 lg:mb-[0.6vw]">
+                  Gallery
                 </p>
-                <h2 id="gallery-title" className="font-black leading-none uppercase" style={{ fontSize: '4vw', maxWidth: '34vw' }}>
-                  Proven Surface Solutions
+                <h2 id="gallery-title" className="font-black leading-none uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[4vw] max-w-full lg:max-w-[34vw]">
+                  Project Showcase
                 </h2>
               </div>
             </div>
@@ -873,11 +986,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Transformation & Subscribe Section */}
-      <section id="transformation" className="relative px-[18px] pb-32" aria-labelledby="transformation-title">
+      {/* Connect Section */}
+      <section id="connect" className="relative px-[18px] pb-32" aria-labelledby="connect-title">
         <div
           className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-700 to-blue-600 shadow-2xl"
-          style={{ borderRadius: '3vw', padding: '3vw' }}
+          style={{ borderRadius: '3vw' }}
         >
           {/* Decorative Elements */}
           <div className="pointer-events-none absolute inset-0 opacity-15">
@@ -888,17 +1001,17 @@ export default function Home() {
             </svg>
           </div>
 
-          <div className="relative z-10 flex flex-col gap-16">
-            <div className="flex flex-col gap-8 text-white lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-[40vw]" style={{ fontSize: '1.1vw' }}>
-                <p className="uppercase tracking-[0.4em] text-white/60" style={{ fontSize: '0.75vw', marginBottom: '0.6vw' }}>
+          <div className="relative z-10 flex flex-col gap-10 sm:gap-12 md:gap-14 lg:gap-16 p-10 sm:p-12 md:p-14 lg:p-12">
+            <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 text-white lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-full lg:max-w-[40vw]">
+                <p className="uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/60 text-sm sm:text-base lg:text-[0.8vw] mb-2 sm:mb-3 lg:mb-[0.6vw]">
                   Before &amp; After
                 </p>
-                <h2 id="transformation-title" className="font-black leading-none uppercase" style={{ fontSize: '4vw', maxWidth: '34vw' }}>
+                <h2 id="connect-title" className="font-black leading-none uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[4vw] max-w-full lg:max-w-[34vw]">
                   The Chromium Difference
                 </h2>
               </div>
-              <p className="max-w-[38vw] text-white/85" style={{ fontSize: '1.05vw' }}>
+              <p className="max-w-full lg:max-w-[38vw] text-white/85 text-base sm:text-lg md:text-xl lg:text-[1.2vw]">
                 When process-critical surfaces demand perfection, our teams deliver certainty. Compare the reality
                 manufacturers face before partnering with Chromium Industries and the confidence they gain after.
               </p>
@@ -920,15 +1033,17 @@ export default function Home() {
                         isPositive ? 'from-emerald-500/40 via-blue-500/30 to-indigo-600/40' : 'from-rose-500/40 via-blue-500/20 to-indigo-600/30'
                       } mix-blend-lighten`}
                     />
-                    <div className="relative z-10 flex flex-col gap-6">
-                      <div className="flex items-center gap-4">
-                        {renderFaceIcon(state.tone)}
+                    <div className="relative z-10 flex flex-col gap-4 sm:gap-6">
+                      <div className="flex items-start sm:items-center gap-3 sm:gap-4">
+                        <div className="flex-shrink-0">
+                          {renderFaceIcon(state.tone)}
+                        </div>
                         <div>
-                          <p className="text-sm uppercase tracking-[0.3em] text-white/70">{state.headline}</p>
-                          <p className="text-2xl font-semibold leading-tight text-white">{state.subhead}</p>
+                          <p className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/70">{state.headline}</p>
+                          <p className="text-lg sm:text-xl md:text-2xl font-semibold leading-tight text-white mt-1">{state.subhead}</p>
                         </div>
                       </div>
-                      <ul className="flex flex-col gap-4 text-white/85" style={{ fontSize: '1.05vw' }}>
+                      <ul className="flex flex-col gap-3 sm:gap-4 text-white/85 text-sm sm:text-base lg:text-[1.05vw]">
                         {state.bulletPoints.map((bullet) => (
                           <li key={bullet} className="flex items-start gap-3">
                             <span
@@ -951,9 +1066,9 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 via-indigo-500/30 to-sky-500/30 opacity-80" />
               <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                 <div className="max-w-3xl text-white">
-                  <p className="uppercase tracking-[0.3em] text-white/70 text-sm">Stay in the know</p>
-                  <h3 className="text-3xl font-bold leading-tight">Subscribe for precision surface insights</h3>
-                  <p className="text-white/80 text-sm leading-relaxed lg:text-base">
+                  <p className="uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/70 text-sm sm:text-base lg:text-[0.8vw]">Stay in the know</p>
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Subscribe for precision surface insights</h3>
+                  <p className="text-white/80 text-base sm:text-lg md:text-xl lg:text-[1.2vw] leading-relaxed">
                     Get quarterly updates on advanced coatings, roll maintenance strategies, and success stories from
                     manufacturers that trust Chromium Industries with their most critical production assets.
                   </p>
