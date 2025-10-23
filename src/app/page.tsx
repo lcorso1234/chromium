@@ -343,7 +343,7 @@ export default function Home() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [viewerOpen]);
+  }, [viewerOpen, goToNext, goToPrevious]);
 
   const getCategoryLabel = (key: string) =>
     SERVICE_CATEGORIES.find((category) => category.key === key)?.label ?? 'All Services';
@@ -656,7 +656,7 @@ export default function Home() {
               </div>
               <div className="max-w-full lg:max-w-[40vw] text-white/90 text-base sm:text-lg md:text-xl lg:text-[1.2vw] lg:order-1">
                 <p>
-                  Since 1955, we've been the trusted partner for precision roll engineering, delivering solutions that keep production lines running flawlessly across packaging, plastics, and converting industries worldwide.
+                  Since 1955, we&apos;ve been the trusted partner for precision roll engineering, delivering solutions that keep production lines running flawlessly across packaging, plastics, and converting industries worldwide.
                 </p>
               </div>
             </div>
