@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 type ServiceCategory = {
   key: string;
@@ -326,13 +326,13 @@ export default function Home() {
     setViewerOpen(false);
   };
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentImageIndex((prev) => (prev === 0 ? filteredGallery.length - 1 : prev - 1));
-  };
+  }, [filteredGallery.length]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentImageIndex((prev) => (prev === filteredGallery.length - 1 ? 0 : prev + 1));
-  };
+  }, [filteredGallery.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
