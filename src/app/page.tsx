@@ -1220,7 +1220,7 @@ export default function Home() {
                   </p>
                 </div>
                 <form
-                  className="flex w-full flex-col gap-4 rounded-2xl bg-white/10 p-3 backdrop-blur-sm sm:flex-row sm:p-4 lg:w-auto"
+                  className="flex w-full flex-col gap-4 rounded-2xl bg-white/10 p-3 backdrop-blur-sm sm:flex-row sm:p-4 lg:w-auto lg:min-w-[500px]"
                   aria-label="Subscribe to Chromium Industries insights"
                 >
                   <label className="flex-1">
@@ -1229,12 +1229,12 @@ export default function Home() {
                       type="email"
                       required
                       placeholder="you@company.com"
-                      className="w-full rounded-xl border border-white/20 bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 outline-none transition focus:border-white/60 focus:ring-2 focus:ring-blue-200"
+                      className="w-full rounded-xl border border-white/20 bg-white/90 px-6 py-5 text-base font-medium text-slate-900 outline-none transition focus:border-white/60 focus:ring-2 focus:ring-blue-200"
                     />
                   </label>
                   <button
                     type="submit"
-                    className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg transition hover:from-blue-500 hover:to-indigo-500 hover:shadow-xl"
+                    className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-5 text-base font-semibold uppercase tracking-wider text-white shadow-lg transition hover:from-blue-500 hover:to-indigo-500 hover:shadow-xl"
                   >
                     Subscribe
                   </button>
