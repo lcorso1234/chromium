@@ -1,242 +1,10 @@
-'use client';
+"use client";
 
 import Image from 'next/image';
 import { useEffect, useState, useCallback } from 'react';
+import { SERVICE_CATEGORIES, VIDEO_LIBRARY, GALLERY_LIBRARY } from './data';
+import { VIDEOS_PER_PAGE, GALLERY_IMAGES_PER_PAGE, ServiceCategory, VideoResource, GalleryResource } from './data';
 
-type ServiceCategory = {
-  key: string;
-  label: string;
-};
-
-type VideoResource = {
-  id: number;
-  title: string;
-  category: string;
-  duration: string;
-  description: string;
-  accent: string;
-};
-
-type GalleryResource = {
-  id: number;
-  title: string;
-  category: string;
-  description: string;
-  imageUrl: string;
-  accent: string;
-};
-
-const SERVICE_CATEGORIES: ServiceCategory[] = [
-  { key: 'all', label: 'All Services' },
-  { key: 'chrome-plating', label: 'Chrome Plating' },
-  { key: 'cylindrical-grinding', label: 'Cylindrical Grinding' },
-  { key: 'thermal-spray', label: 'Thermal Spray Coatings' },
-  { key: 'machining-fabrication', label: 'Machining &amp; Fabrication' },
-  { key: 'roll-manufacturing', label: 'Roll Manufacturing' },
-  { key: 'inspection-quality', label: 'Inspection &amp; Quality' },
-];
-
-const VIDEO_LIBRARY: VideoResource[] = [
-  {
-    id: 1,
-    title: 'Hard Chrome Plating Deep Dive',
-    category: 'chrome-plating',
-    duration: '4:32',
-    description: 'Explore how precision chrome layers restore worn rolls and extend their performance life.',
-    accent: 'from-blue-400 via-sky-500 to-cyan-600',
-  },
-  {
-    id: 2,
-    title: 'Roll Surface Preparation',
-    category: 'chrome-plating',
-    duration: '3:58',
-    description: 'Step-by-step surface conditioning process that ensures flawless adhesion before plating.',
-    accent: 'from-cyan-500 via-blue-500 to-indigo-600',
-  },
-  {
-    id: 3,
-    title: 'Cylindrical Grinding Accuracy',
-    category: 'cylindrical-grinding',
-    duration: '5:11',
-    description: 'See our multi-axis grinders achieve micron-level precision on massive industrial rolls.',
-    accent: 'from-indigo-500 via-blue-600 to-purple-700',
-  },
-  {
-    id: 4,
-    title: 'Mirror Finish Polishing',
-    category: 'cylindrical-grinding',
-    duration: '2:47',
-    description: 'Follow the finishing passes that deliver the exact surface texture your process demands.',
-    accent: 'from-blue-500 via-indigo-500 to-violet-600',
-  },
-  {
-    id: 5,
-    title: 'Thermal Spray Coating Options',
-    category: 'thermal-spray',
-    duration: '6:05',
-    description: 'Compare plasma, HVOF, and arc spray coatings engineered for abrasion and corrosion resistance.',
-    accent: 'from-emerald-500 via-teal-500 to-sky-500',
-  },
-  {
-    id: 6,
-    title: 'Emergency Roll Repair Workflow',
-    category: 'roll-manufacturing',
-    duration: '4:14',
-    description: 'A rapid-response look at roll assessment, straightening, and full rebuild capabilities.',
-    accent: 'from-blue-600 via-indigo-600 to-slate-700',
-  },
-  {
-    id: 7,
-    title: 'Custom Roll Manufacturing',
-    category: 'roll-manufacturing',
-    duration: '7:02',
-    description: 'Track the build of a new precision roll from raw stock through machining and finishing.',
-    accent: 'from-sky-500 via-blue-500 to-indigo-700',
-  },
-  {
-    id: 8,
-    title: 'Machining & Fabrication Tour',
-    category: 'machining-fabrication',
-    duration: '3:36',
-    description: 'Inside our large-format machining bays, welding stations, and fabrication cells.',
-    accent: 'from-blue-400 via-indigo-500 to-fuchsia-600',
-  },
-  {
-    id: 9,
-    title: 'Quality Lab Spotlight',
-    category: 'inspection-quality',
-    duration: '2:55',
-    description: 'How metrology, ultrasonic testing, and profilometry validate every production run.',
-    accent: 'from-teal-400 via-blue-500 to-indigo-600',
-  },
-  {
-    id: 10,
-    title: 'Thermal Spray Field Performance',
-    category: 'thermal-spray',
-    duration: '4:21',
-    description: 'Customer results from high-wear environments comparing spray options head-to-head.',
-    accent: 'from-indigo-500 via-blue-500 to-cyan-500',
-  },
-  {
-    id: 11,
-    title: 'Fabrication for OEM Partners',
-    category: 'machining-fabrication',
-    duration: '5:44',
-    description: 'Collaborative engineering on complex assemblies, fixturing, and welded structures.',
-    accent: 'from-blue-500 via-slate-600 to-indigo-700',
-  },
-  {
-    id: 12,
-    title: 'Inspection Readiness Checklist',
-    category: 'inspection-quality',
-    duration: '3:08',
-    description: 'Best practices to prep your rolls for incoming quality verification and documentation.',
-    accent: 'from-indigo-400 via-blue-500 to-sky-600',
-  },
-];
-
-const VIDEOS_PER_PAGE = 6;
-
-const GALLERY_LIBRARY: GalleryResource[] = [
-  {
-    id: 101,
-    title: 'Hard Chrome Plating Cells',
-    category: 'chrome-plating',
-    description: 'Multi-station plating cells delivering uniform deposits on critical process rolls.',
-    imageUrl: 'https://images.unsplash.com/photo-1614064575910-aca5c4193aae?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-blue-500 via-sky-500 to-cyan-600',
-  },
-  {
-    id: 102,
-    title: 'Roll Surface Finishing',
-    category: 'chrome-plating',
-    description: 'Bright polishing stages that seal and perfect the plated surface.',
-    imageUrl: 'https://images.unsplash.com/photo-1517434322-67bb603052cb?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-cyan-500 via-blue-500 to-indigo-600',
-  },
-  {
-    id: 103,
-    title: 'Precision Grinding Bay',
-    category: 'cylindrical-grinding',
-    description: 'CNC grinders holding tight tolerances on large-diameter workpieces.',
-    imageUrl: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-indigo-500 via-blue-600 to-purple-700',
-  },
-  {
-    id: 104,
-    title: 'Surface Measurement',
-    category: 'cylindrical-grinding',
-    description: 'Metrology validation to confirm roundness and roughness specifications.',
-    imageUrl: 'https://images.unsplash.com/photo-1544476915-ed1370594142?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-blue-500 via-indigo-500 to-violet-600',
-  },
-  {
-    id: 105,
-    title: 'Thermal Spray Booth',
-    category: 'thermal-spray',
-    description: 'High-velocity coating cell engineered for extreme wear resistance applications.',
-    imageUrl: 'https://images.unsplash.com/photo-1503389152951-9f343605f61e?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-emerald-500 via-teal-500 to-sky-500',
-  },
-  {
-    id: 106,
-    title: 'Arc Spray Application',
-    category: 'thermal-spray',
-    description: 'Controlled arc spray delivering dense, bonded overlays in production volumes.',
-    imageUrl: 'https://images.unsplash.com/photo-1543248939-ff40856f65d4?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-teal-500 via-cyan-500 to-blue-600',
-  },
-  {
-    id: 107,
-    title: 'Heavy Roll Fabrication',
-    category: 'machining-fabrication',
-    description: 'Large-format fabrication cell assembling new roll bodies and cores.',
-    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-blue-500 via-slate-600 to-indigo-700',
-  },
-  {
-    id: 108,
-    title: 'Precision CNC Turning',
-    category: 'machining-fabrication',
-    description: 'Multi-axis machining on hardened materials with process monitoring.',
-    imageUrl: 'https://images.unsplash.com/photo-1559013816-50e10258d7d5?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-indigo-500 via-blue-500 to-slate-700',
-  },
-  {
-    id: 109,
-    title: 'New Roll Assembly',
-    category: 'roll-manufacturing',
-    description: 'Final assembly bay bringing together journals, bearings, and core bodies.',
-    imageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-sky-500 via-blue-500 to-indigo-700',
-  },
-  {
-    id: 110,
-    title: 'Emergency Repair Team',
-    category: 'roll-manufacturing',
-    description: 'Rapid turnaround rebuild capability for mission-critical production rolls.',
-    imageUrl: 'https://images.unsplash.com/photo-1581092586513-67677f8f5d32?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-blue-600 via-indigo-600 to-slate-700',
-  },
-  {
-    id: 111,
-    title: 'Ultrasonic Inspection',
-    category: 'inspection-quality',
-    description: 'Technicians validating structural integrity before shipment.',
-    imageUrl: 'https://images.unsplash.com/photo-1548716664-46c9b53f9607?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-teal-400 via-blue-500 to-indigo-600',
-  },
-  {
-    id: 112,
-    title: 'Surface Profilometry',
-    category: 'inspection-quality',
-    description: 'Detailed profilometry scanning confirming finish metrics meet spec.',
-    imageUrl: 'https://images.unsplash.com/photo-1581092919534-9acaeb1f30d8?auto=format&fit=crop&w=1600&q=80',
-    accent: 'from-indigo-400 via-blue-500 to-sky-600',
-  },
-];
-
-const GALLERY_IMAGES_PER_PAGE = 6;
 
 type TransformationState = {
   key: 'before' | 'after';
@@ -283,7 +51,7 @@ export default function Home() {
   const filteredVideos =
     activeCategory === 'all'
       ? VIDEO_LIBRARY
-      : VIDEO_LIBRARY.filter((video) => video.category === activeCategory);
+      : VIDEO_LIBRARY.filter((video: VideoResource) => video.category === activeCategory);
   const totalPages = Math.max(1, Math.ceil(filteredVideos.length / VIDEOS_PER_PAGE));
 
   useEffect(() => {
@@ -300,8 +68,8 @@ export default function Home() {
 
   const filteredGallery =
     galleryCategory === 'all'
-      ? GALLERY_LIBRARY
-      : GALLERY_LIBRARY.filter((item) => item.category === galleryCategory);
+      ? (GALLERY_LIBRARY as GalleryResource[])
+      : (GALLERY_LIBRARY.filter((item: GalleryResource) => item.category === galleryCategory) as GalleryResource[]);
   const galleryTotalPages = Math.max(1, Math.ceil(filteredGallery.length / GALLERY_IMAGES_PER_PAGE));
 
   useEffect(() => {
@@ -311,13 +79,13 @@ export default function Home() {
   }, [galleryPage, galleryTotalPages]);
 
   const galleryStart = (galleryPage - 1) * GALLERY_IMAGES_PER_PAGE;
-  const visibleGallery = filteredGallery.slice(galleryStart, galleryStart + GALLERY_IMAGES_PER_PAGE);
+  const visibleGallery: GalleryResource[] = filteredGallery.slice(galleryStart, galleryStart + GALLERY_IMAGES_PER_PAGE);
   const galleryTotalFiltered = filteredGallery.length;
   const galleryRangeStart = galleryTotalFiltered === 0 ? 0 : galleryStart + 1;
   const galleryRangeEnd = galleryStart + visibleGallery.length;
 
   const openViewer = (index: number) => {
-    const galleryIndex = filteredGallery.findIndex(item => item.id === visibleGallery[index].id);
+  const galleryIndex = filteredGallery.findIndex((item: GalleryResource) => item.id === visibleGallery[index].id);
     setCurrentImageIndex(galleryIndex);
     setViewerOpen(true);
   };
@@ -346,7 +114,7 @@ export default function Home() {
   }, [viewerOpen, goToNext, goToPrevious]);
 
   const getCategoryLabel = (key: string) =>
-    SERVICE_CATEGORIES.find((category) => category.key === key)?.label ?? 'All Services';
+  SERVICE_CATEGORIES.find((category: ServiceCategory) => category.key === key)?.label ?? 'All Services';
 
   const renderIcon = (tone: 'negative' | 'positive', key?: string) => {
     const isBeforeState = key === 'before';
@@ -739,6 +507,7 @@ export default function Home() {
       </section>
 
       {/* Video Library Section */}
+      {/* Video Library Section */}
       <section id="videos" className="relative px-[18px] pb-32" aria-labelledby="videos-title">
         <div
           className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-700 to-blue-600 shadow-2xl"
@@ -774,7 +543,7 @@ export default function Home() {
 
             {/* Category Filters */}
             <div className="flex flex-wrap gap-3">
-              {SERVICE_CATEGORIES.map((category) => {
+              {SERVICE_CATEGORIES.map((category: ServiceCategory) => {
                 const isActive = activeCategory === category.key;
                 return (
                   <button
@@ -798,7 +567,7 @@ export default function Home() {
             {/* Video Grid */}
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
               {visibleVideos.length > 0 ? (
-                visibleVideos.map((video) => (
+                visibleVideos.map((video: VideoResource) => (
                   <article
                     key={video.id}
                     className="group relative overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-6 shadow-2xl transition-transform hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(59,130,246,0.35)]"
@@ -931,6 +700,7 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
+      {/* Gallery Section */}
       <section id="gallery" className="relative px-[18px] pb-32" aria-labelledby="gallery-title">
         <div
           className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-700 to-blue-600 shadow-2xl"
@@ -966,7 +736,7 @@ export default function Home() {
 
             {/* Category Filters */}
             <div className="flex flex-wrap gap-3">
-              {SERVICE_CATEGORIES.map((category) => {
+              {SERVICE_CATEGORIES.map((category: ServiceCategory) => {
                 const isActive = galleryCategory === category.key;
                 return (
                   <button
@@ -990,7 +760,7 @@ export default function Home() {
             {/* Gallery Grid */}
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
               {visibleGallery.length > 0 ? (
-                visibleGallery.map((item) => (
+                visibleGallery.map((item: GalleryResource) => (
                   <article
                     key={item.id}
                     className="group relative overflow-hidden rounded-3xl border border-white/15 bg-white/10 shadow-2xl transition-transform hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(59,130,246,0.35)]"
