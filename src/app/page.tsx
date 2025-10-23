@@ -31,9 +31,9 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
   { key: 'chrome-plating', label: 'Chrome Plating' },
   { key: 'cylindrical-grinding', label: 'Cylindrical Grinding' },
   { key: 'thermal-spray', label: 'Thermal Spray Coatings' },
-  { key: 'machining-fabrication', label: 'Machining & Fabrication' },
+  { key: 'machining-fabrication', label: 'Machining &amp; Fabrication' },
   { key: 'roll-manufacturing', label: 'Roll Manufacturing' },
-  { key: 'inspection-quality', label: 'Inspection & Quality' },
+  { key: 'inspection-quality', label: 'Inspection &amp; Quality' },
 ];
 
 const VIDEO_LIBRARY: VideoResource[] = [
@@ -277,6 +277,8 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [galleryCategory, setGalleryCategory] = useState<string>('all');
   const [galleryPage, setGalleryPage] = useState(1);
+  const [viewerOpen, setViewerOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const filteredVideos =
     activeCategory === 'all'
@@ -314,38 +316,119 @@ export default function Home() {
   const galleryRangeStart = galleryTotalFiltered === 0 ? 0 : galleryStart + 1;
   const galleryRangeEnd = galleryStart + visibleGallery.length;
 
+  const openViewer = (index: number) => {
+    const galleryIndex = filteredGallery.findIndex(item => item.id === visibleGallery[index].id);
+    setCurrentImageIndex(galleryIndex);
+    setViewerOpen(true);
+  };
+
+  const closeViewer = () => {
+    setViewerOpen(false);
+  };
+
+  const goToPrevious = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? filteredGallery.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentImageIndex((prev) => (prev === filteredGallery.length - 1 ? 0 : prev + 1));
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!viewerOpen) return;
+      if (e.key === 'Escape') closeViewer();
+      if (e.key === 'ArrowLeft') goToPrevious();
+      if (e.key === 'ArrowRight') goToNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [viewerOpen]);
+
   const getCategoryLabel = (key: string) =>
     SERVICE_CATEGORIES.find((category) => category.key === key)?.label ?? 'All Services';
 
-  const renderFaceIcon = (tone: 'negative' | 'positive') => {
-    const isPositive = tone === 'positive';
-    const faceColor = isPositive ? '#22c55e' : '#ef4444';
-    const eyeY = isPositive ? 18 : 20;
-    const mouthPath = isPositive
-      ? 'M12 28c2.5-3 5.5-4.5 8-4.5s5.5 1.5 8 4.5'
-      : 'M12 30c2.5-3 5.5-4.5 8-4.5s5.5 1.5 8 4.5';
-    const ariaLabel = isPositive
-      ? 'Smiling face representing assured quality with Chromium Industries'
-      : 'Concerned face representing inconsistent quality before Chromium Industries';
+  const renderIcon = (tone: 'negative' | 'positive', key?: string) => {
+    const isBeforeState = key === 'before';
+    const iconColor = isBeforeState ? '#ef4444' : '#22c55e';
+    const ariaLabel = isBeforeState
+      ? 'Alert icon representing challenges before Chromium'
+      : 'Success checkmark representing solutions after Chromium';
 
-    return (
-      <svg
-        width="80"
-        height="80"
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="drop-shadow-lg"
-        role="img"
-        aria-label={ariaLabel}
-      >
-        <circle cx="24" cy="24" r="22" fill={faceColor} opacity="0.9" />
-        <circle cx="17" cy={eyeY} r="3" fill="#0f172a" />
-        <circle cx="31" cy={eyeY} r="3" fill="#0f172a" />
-        <path d={mouthPath} stroke="#0f172a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="24" cy="24" r="22" stroke="white" strokeOpacity="0.6" strokeWidth="2" />
-      </svg>
-    );
+    if (isBeforeState) {
+      // Alert/Warning Triangle Icon
+      return (
+        <svg
+          width="80"
+          height="80"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="drop-shadow-lg"
+          role="img"
+          aria-label={ariaLabel}
+        >
+          <path
+            d="M24 4L44 40H4L24 4Z"
+            fill={iconColor}
+            opacity="0.9"
+          />
+          <path
+            d="M24 4L44 40H4L24 4Z"
+            stroke="white"
+            strokeWidth="2"
+            strokeOpacity="0.6"
+          />
+          <line
+            x1="24"
+            y1="16"
+            x2="24"
+            y2="28"
+            stroke="white"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+          <circle cx="24" cy="34" r="2" fill="white" />
+        </svg>
+      );
+    } else {
+      // Checkmark Circle Icon
+      return (
+        <svg
+          width="80"
+          height="80"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="drop-shadow-lg"
+          role="img"
+          aria-label={ariaLabel}
+        >
+          <circle
+            cx="24"
+            cy="24"
+            r="22"
+            fill={iconColor}
+            opacity="0.9"
+          />
+          <circle
+            cx="24"
+            cy="24"
+            r="22"
+            stroke="white"
+            strokeWidth="2"
+            strokeOpacity="0.6"
+          />
+          <path
+            d="M14 24L20 30L34 16"
+            stroke="white"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    }
   };
 
   return (
@@ -754,13 +837,35 @@ export default function Home() {
 
                       <div className="flex items-center justify-between text-sm text-white/80">
                         <button
+                          onClick={() => {
+                            // Placeholder for video preview - could integrate video player
+                            alert(`Opening preview for: ${video.title}\n\nDuration: ${video.duration}\n\nThis would launch a video player in a production environment.`);
+                          }}
                           className="rounded-full border border-white/20 px-4 py-2 font-semibold uppercase tracking-wider transition-all hover:border-white/60 hover:bg-white/20"
                           aria-label={`Watch preview for ${video.title}`}
                         >
                           Watch Preview
                         </button>
-                        <a
-                          href="#"
+                        <button
+                          onClick={async () => {
+                            const shareData = {
+                              title: video.title,
+                              text: `${video.description} (${video.duration})`,
+                              url: window.location.href,
+                            };
+                            if (navigator.share) {
+                              try {
+                                await navigator.share(shareData);
+                              } catch (err) {
+                                if ((err as Error).name !== 'AbortError') {
+                                  console.error('Error sharing:', err);
+                                }
+                              }
+                            } else {
+                              await navigator.clipboard.writeText(window.location.href);
+                              alert('Link copied to clipboard!');
+                            }
+                          }}
                           className="flex items-center gap-2 font-semibold uppercase tracking-wider hover:text-white"
                           aria-label={`Share ${video.title}`}
                         >
@@ -768,7 +873,7 @@ export default function Home() {
                           <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
                           </svg>
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </article>
@@ -914,13 +1019,32 @@ export default function Home() {
                       <p className="text-white/80 text-sm leading-relaxed">{item.description}</p>
                       <div className="flex items-center justify-between text-sm text-white/80">
                         <button
+                          onClick={() => openViewer(visibleGallery.indexOf(item))}
                           className="rounded-full border border-white/20 px-4 py-2 font-semibold uppercase tracking-wider transition-all hover:border-white/60 hover:bg-white/20"
                           aria-label={`View ${item.title}`}
                         >
                           View
                         </button>
-                        <a
-                          href="#"
+                        <button
+                          onClick={async () => {
+                            const shareData = {
+                              title: item.title,
+                              text: item.description,
+                              url: window.location.href,
+                            };
+                            if (navigator.share) {
+                              try {
+                                await navigator.share(shareData);
+                              } catch (err) {
+                                if ((err as Error).name !== 'AbortError') {
+                                  console.error('Error sharing:', err);
+                                }
+                              }
+                            } else {
+                              await navigator.clipboard.writeText(window.location.href);
+                              alert('Link copied to clipboard!');
+                            }
+                          }}
                           className="flex items-center gap-2 font-semibold uppercase tracking-wider hover:text-white"
                           aria-label={`Share ${item.title}`}
                         >
@@ -928,7 +1052,7 @@ export default function Home() {
                           <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
                           </svg>
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </article>
@@ -1017,6 +1141,28 @@ export default function Home() {
               </p>
             </div>
 
+            {/* Contact Button - Top */}
+            <div className="flex justify-center">
+              <a
+                href="mailto:mtannura@chromiumind.com?subject=Inquiry%20from%20Chromium%20Industries%20Website&body=Hello%20Chromium%20Industries%2C%0D%0A%0D%0AI%27m%20interested%20in%20learning%20more%20about%20your%20services.%20Please%20contact%20me%20regarding%3A%0D%0A%0D%0AServices%20I%27m%20Interested%20In%3A%0D%0A%E2%98%90%20Chrome%20Plating%0D%0A%E2%98%90%20Cylindrical%20Grinding%0D%0A%E2%98%90%20Thermal%20Spray%20Coatings%0D%0A%E2%98%90%20Machining%20%26%20Fabrication%0D%0A%E2%98%90%20Roll%20Manufacturing%0D%0A%E2%98%90%20Inspection%20%26%20Quality%0D%0A%0D%0AAdditional%20Details%3A%0D%0A%0D%0A%0D%0ACompany%20Name%3A%0D%0AContact%20Phone%3A%0D%0ABest%20Time%20to%20Reach%20Me%3A%0D%0A%0D%0AThank%20you%21"
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-12 py-6 shadow-2xl transition-all hover:shadow-[0_20px_60px_rgba(59,130,246,0.5)] hover:scale-105"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <div className="relative flex items-center gap-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <div className="text-left">
+                    <p className="text-white/80 text-sm uppercase tracking-wider mb-1">Get in Touch</p>
+                    <p className="text-white text-xl sm:text-2xl font-bold">Contact Us Today</p>
+                  </div>
+                  <svg className="w-6 h-6 text-white/60 group-hover:text-white group-hover:translate-x-2 transition-all ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </a>
+            </div>
+
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
               {TRANSFORMATION_STATES.map((state) => {
                 const isPositive = state.tone === 'positive';
@@ -1036,7 +1182,7 @@ export default function Home() {
                     <div className="relative z-10 flex flex-col gap-4 sm:gap-6">
                       <div className="flex items-start sm:items-center gap-3 sm:gap-4">
                         <div className="flex-shrink-0">
-                          {renderFaceIcon(state.tone)}
+                          {renderIcon(state.tone, state.key)}
                         </div>
                         <div>
                           <p className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/70">{state.headline}</p>
@@ -1095,10 +1241,117 @@ export default function Home() {
                 </form>
               </div>
             </div>
+
+            {/* Contact Button - Bottom */}
+            <div className="flex justify-center">
+              <a
+                href="mailto:mtannura@chromiumind.com?subject=Inquiry%20from%20Chromium%20Industries%20Website&body=Hello%20Chromium%20Industries%2C%0D%0A%0D%0AI%27m%20interested%20in%20learning%20more%20about%20your%20services.%20Please%20contact%20me%20regarding%3A%0D%0A%0D%0AServices%20I%27m%20Interested%20In%3A%0D%0A%E2%98%90%20Chrome%20Plating%0D%0A%E2%98%90%20Cylindrical%20Grinding%0D%0A%E2%98%90%20Thermal%20Spray%20Coatings%0D%0A%E2%98%90%20Machining%20%26%20Fabrication%0D%0A%E2%98%90%20Roll%20Manufacturing%0D%0A%E2%98%90%20Inspection%20%26%20Quality%0D%0A%0D%0AAdditional%20Details%3A%0D%0A%0D%0A%0D%0ACompany%20Name%3A%0D%0AContact%20Phone%3A%0D%0ABest%20Time%20to%20Reach%20Me%3A%0D%0A%0D%0AThank%20you%21"
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-12 py-6 shadow-2xl transition-all hover:shadow-[0_20px_60px_rgba(59,130,246,0.5)] hover:scale-105"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <div className="relative flex items-center gap-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <div className="text-left">
+                    <p className="text-white/80 text-sm uppercase tracking-wider mb-1">Get in Touch</p>
+                    <p className="text-white text-xl sm:text-2xl font-bold">Contact Us Today</p>
+                  </div>
+                  <svg className="w-6 h-6 text-white/60 group-hover:text-white group-hover:translate-x-2 transition-all ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </section>
     </main>
+
+    {/* Image Viewer Modal */}
+    {viewerOpen && filteredGallery[currentImageIndex] && (
+      <div 
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-900/60 backdrop-blur-md"
+        onClick={closeViewer}
+      >
+        {/* Close Button */}
+        <button
+          onClick={closeViewer}
+          className="fixed top-6 right-6 z-[10000] w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center hover:bg-white/20 transition-all shadow-2xl group"
+          aria-label="Close image viewer"
+        >
+          <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Previous Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            goToPrevious();
+          }}
+          className="fixed left-6 z-[10000] w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center hover:bg-white/20 transition-all shadow-2xl group"
+          aria-label="Previous image"
+        >
+          <svg className="w-6 h-6 text-white group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* Next Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            goToNext();
+          }}
+          className="fixed right-6 z-[10000] w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center hover:bg-white/20 transition-all shadow-2xl group"
+          aria-label="Next image"
+        >
+          <svg className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Image Container */}
+        <div 
+          className="relative max-w-7xl max-h-[90vh] w-full mx-8"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 bg-slate-800">
+            <Image
+              src={filteredGallery[currentImageIndex].imageUrl}
+              alt={filteredGallery[currentImageIndex].title}
+              fill
+              sizes="90vw"
+              className="object-contain"
+              priority
+              unoptimized
+            />
+          </div>
+          
+          {/* Image Info with Glass Effect */}
+          <div className="mt-6 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-2xl p-6 shadow-2xl">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <p className="text-xs uppercase tracking-wider text-white/60 mb-2">
+                  {getCategoryLabel(filteredGallery[currentImageIndex].category)}
+                </p>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  {filteredGallery[currentImageIndex].title}
+                </h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  {filteredGallery[currentImageIndex].description}
+                </p>
+              </div>
+              <p className="text-white/60 text-sm">
+                {currentImageIndex + 1} / {filteredGallery.length}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
   </div>
 );
 }
