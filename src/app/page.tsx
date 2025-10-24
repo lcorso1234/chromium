@@ -657,7 +657,7 @@ export default function Home() {
             {/* Pagination */}
             <div className="flex flex-col gap-4 text-white/80 lg:flex-row lg:items-center lg:justify-between">
               <p className="text-sm uppercase tracking-[0.3em]">
-                Showing {rangeStart === 0 ? '0' : `${rangeStart}-${rangeEnd}`} of {totalFiltered} videos
+                Showing {rangeStart === 0 ? 0 : `${rangeStart}-${rangeEnd}`} of {totalFiltered} videos
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <button
