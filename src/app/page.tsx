@@ -90,9 +90,9 @@ export default function Home() {
     setViewerOpen(true);
   };
 
-  const closeViewer = () => {
+  const closeViewer = useCallback(() => {
     setViewerOpen(false);
-  };
+  }, [setViewerOpen]);
 
   const goToPrevious = useCallback(() => {
     setCurrentImageIndex((prev) => (prev === 0 ? filteredGallery.length - 1 : prev - 1));
@@ -111,7 +111,7 @@ export default function Home() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [viewerOpen, goToNext, goToPrevious]);
+  }, [viewerOpen, goToNext, goToPrevious, closeViewer]);
 
   const getCategoryLabel = (key: string) =>
   SERVICE_CATEGORIES.find((category: ServiceCategory) => category.key === key)?.label ?? 'All Services';
