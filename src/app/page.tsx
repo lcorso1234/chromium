@@ -18,28 +18,29 @@ const TRANSFORMATION_STATES: TransformationState[] = [
   {
     key: 'before',
     headline: 'Before Chromium',
-    subhead: 'Quality slips, downtime grows, and uncertainty hangs over every production run.',
+    subhead: 'Quality slips, downtime grows, and uncertainty hangs over Chicago production runs.',
     bulletPoints: [
-      'Inconsistent surface finishes create costly scrap and rework cycles',
-      'Emergency roll repairs disrupt schedules and erode customer confidence',
-      'Limited partners stretch inspection and QC teams thin',
+      'Inconsistent surface finishes create costly scrap and rework cycles for Chicago converters',
+      'Emergency roll repairs in Chicagoland disrupt schedules and erode customer confidence',
+      'Limited local partners stretch inspection and QC teams thin across the Midwest',
     ],
     tone: 'negative',
   },
   {
     key: 'after',
     headline: 'After Chromium',
-    subhead: 'Quality is repeatable, uptime is predictable, and teams focus on growth.',
+    subhead: 'Quality is repeatable, uptime is predictable, and Chicago teams focus on growth.',
     bulletPoints: [
-      'Precision-finished rolls deliver flawless results shift after shift',
-      '24/7 response and full-service rebuilds eliminate production anxiety',
-      'Certified inspection data proves compliance on every shipment',
+      'Precision-finished rolls crafted in Chicago deliver flawless results shift after shift',
+      '24/7 Chicago response and full-service rebuilds eliminate production anxiety',
+      'Certified Chicago inspection data proves compliance on every shipment',
     ],
     tone: 'positive',
   },
 ];
 
 export default function Home() {
+  const currentYear = new Date().getFullYear();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,7 +86,7 @@ export default function Home() {
   const galleryRangeEnd = galleryStart + visibleGallery.length;
 
   const openViewer = (index: number) => {
-  const galleryIndex = filteredGallery.findIndex((item: GalleryResource) => item.id === visibleGallery[index].id);
+    const galleryIndex = filteredGallery.findIndex((item: GalleryResource) => item.id === visibleGallery[index].id);
     setCurrentImageIndex(galleryIndex);
     setViewerOpen(true);
   };
@@ -341,9 +342,12 @@ export default function Home() {
           <div className="relative z-10 p-10 sm:p-12 md:p-14 lg:p-12">
             {/* Top Right Description */}
             <div className="flex justify-end mb-10 sm:mb-12 md:mb-14 lg:mb-12">
-              <div className="text-right max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[40vw]">
+              <div className="text-right max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[40vw] space-y-4">
                 <p className="text-white leading-relaxed opacity-90 text-base sm:text-lg md:text-xl lg:text-[1.2vw]">
-                  For over 70 years, Chromium Industries has pioneered industrial roll engineering—pairing precision chrome plating, cylindrical grinding, thermal spray coatings, and full roll refurbishment to keep packaging, plastics, and converting production lines running with flawless quality.
+                  For over 70 years, Chicago-based Chromium Industries LLC has pioneered industrial roll engineering—pairing chrome plating in Chicago, cylindrical grinding in Chicago, thermal spray coatings, and full roll refurbishment to keep packaging, plastics, and converting production lines running with flawless quality across North America.
+                </p>
+                <p className="text-white leading-relaxed opacity-90 text-base sm:text-lg md:text-xl lg:text-[1.2vw]">
+                  From our headquarters on Chicago Avenue we respond fast with certified inspection data, emergency roll repair crews, and turnkey rebuilds tailored to Chicagoland manufacturers.
                 </p>
               </div>
             </div>
@@ -358,8 +362,9 @@ export default function Home() {
             {/* Bottom Info */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8 sm:gap-6 mt-16 sm:mt-20 md:mt-24 lg:mt-20">
               <div className="text-white/80">
-                <p className="uppercase tracking-wider text-sm sm:text-base lg:text-[0.8vw] mb-2">World Leaders Since 1955</p>
-                <p className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[1.8vw]">CHROMIUM INDUSTRIES</p>
+                <p className="uppercase tracking-wider text-sm sm:text-base lg:text-[0.8vw] mb-2">Chicago Leaders Since 1955</p>
+                <p className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[1.8vw]">CHROMIUM INDUSTRIES LLC</p>
+                <p className="text-white/70 text-sm sm:text-base lg:text-[0.75vw] mt-2">4645 West Chicago Ave · Chicago, Illinois 60651</p>
               </div>
 
               {/* Social Icons */}
@@ -422,9 +427,12 @@ export default function Home() {
                   Seven Decades of Excellence
                 </h2>
               </div>
-              <div className="max-w-full lg:max-w-[40vw] text-white/90 text-base sm:text-lg md:text-xl lg:text-[1.2vw] lg:order-1">
+              <div className="max-w-full lg:max-w-[40vw] text-white/90 text-base sm:text-lg md:text-xl lg:text-[1.2vw] lg:order-1 space-y-4">
                 <p>
-                  Since 1955, we&apos;ve been the trusted partner for precision roll engineering, delivering solutions that keep production lines running flawlessly across packaging, plastics, and converting industries worldwide.
+                  Since 1955, we&apos;ve been Chicago&apos;s trusted partner for precision roll engineering, delivering solutions that keep production lines running flawlessly across packaging, plastics, and converting industries worldwide.
+                </p>
+                <p>
+                  Every roll we engineer is machined, plated, coated, and inspected in Chicago, Illinois—giving Midwestern manufacturers direct access to hard chrome plating in Chicago, cylindrical grinding in Chicago, and comprehensive roll refurbishment without leaving the region.
                 </p>
               </div>
             </div>
@@ -443,7 +451,7 @@ export default function Home() {
                     <h3 className="text-2xl font-bold text-white">Quality First</h3>
                   </div>
                   <p className="text-white/80 text-base sm:text-lg leading-relaxed">
-                    Every roll, coating, and finish meets exacting specifications backed by certified inspection data and decades of metallurgical expertise.
+                    Every roll, coating, and finish meets exacting specifications backed by Chicago-certified inspection data and decades of metallurgical expertise.
                   </p>
                 </div>
               </article>
@@ -460,7 +468,7 @@ export default function Home() {
                     <h3 className="text-2xl font-bold text-white">24/7 Response</h3>
                   </div>
                   <p className="text-white/80 text-base sm:text-lg leading-relaxed">
-                    Emergency roll repair and rapid turnaround services ensure your production lines stay running with minimal downtime.
+                    Emergency roll repair and rapid turnaround services keep Chicago-area production lines running with minimal downtime.
                   </p>
                 </div>
               </article>
@@ -477,7 +485,7 @@ export default function Home() {
                     <h3 className="text-2xl font-bold text-white">Innovation</h3>
                   </div>
                   <p className="text-white/80 text-base sm:text-lg leading-relaxed">
-                    Advanced thermal spray coatings, precision grinding technology, and continuous process improvements keep us at industry forefront.
+                    Advanced thermal spray coatings, precision grinding technology, and continuous process improvements from our Chicago labs keep us at the industry forefront.
                   </p>
                 </div>
               </article>
@@ -526,8 +534,8 @@ export default function Home() {
             <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-full lg:max-w-[40vw] text-white/90 text-base sm:text-lg md:text-xl lg:text-[1.2vw]">
                 <p>
-                  Every service we deliver is backed by decades of specialized experience. Explore our video
-                  briefs to see how Chromium Industries applies craft, technology, and speed to solve unique
+                  Every service we deliver from Chicago is backed by decades of specialized experience. Explore our video
+                  briefs to see how Chromium Industries LLC applies Chicago craftsmanship, technology, and speed to solve unique
                   production challenges across industries.
                 </p>
               </div>
@@ -719,9 +727,9 @@ export default function Home() {
             <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-full lg:max-w-[40vw] text-white/90 text-base sm:text-lg md:text-xl lg:text-[1.2vw]">
                 <p>
-                  Every roll, sleeve, and engineered surface we deliver is purpose-built for demanding
-                  production environments. Browse our gallery to see recent applications spanning the full
-                  Chromium Industries service portfolio.
+                  Every roll, sleeve, and engineered surface we deliver is produced at our Chicago facilities for demanding
+                  production environments. Browse our gallery to see chrome plating in Chicago, cylindrical grinding in Chicago,
+                  and the broader Chromium Industries LLC service portfolio in action.
                 </p>
               </div>
               <div className="text-white lg:text-right">
@@ -768,11 +776,11 @@ export default function Home() {
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <Image
                         src={item.imageUrl}
-                        alt={`${item.title} project by Chromium Industries`}
+                        alt={`${item.title} project in Chicago, Illinois by Chromium Industries LLC`}
                         fill
                         sizes="(min-width: 1280px) 24vw, (min-width: 768px) 40vw, 90vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        priority={item.id <= 103}
+                        priority={item.id <= 6}
                       />
                       <div className={`absolute inset-0 bg-gradient-to-br ${item.accent} opacity-50 mix-blend-multiply`} />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
@@ -906,15 +914,15 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-full lg:max-w-[38vw] text-white/85 text-base sm:text-lg md:text-xl lg:text-[1.2vw]">
-                When process-critical surfaces demand perfection, our teams deliver certainty. Compare the reality
-                manufacturers face before partnering with Chromium Industries and the confidence they gain after.
+                When Chicago&apos;s process-critical surfaces demand perfection, our West Side teams deliver certainty. Compare the reality
+                manufacturers face before partnering with Chromium Industries LLC in Chicago and the confidence they gain after.
               </p>
             </div>
 
             {/* Contact Button - Top */}
             <div className="flex justify-center">
               <a
-                href="mailto:mtannura@chromiumind.com?subject=Inquiry%20from%20Chromium%20Industries%20Website&body=Hello%20Chromium%20Industries%2C%0D%0A%0D%0AI%27m%20interested%20in%20learning%20more%20about%20your%20services.%20Please%20contact%20me%20regarding%3A%0D%0A%0D%0AServices%20I%27m%20Interested%20In%3A%0D%0A%E2%98%90%20Chrome%20Plating%0D%0A%E2%98%90%20Cylindrical%20Grinding%0D%0A%E2%98%90%20Thermal%20Spray%20Coatings%0D%0A%E2%98%90%20Machining%20%26%20Fabrication%0D%0A%E2%98%90%20Roll%20Manufacturing%0D%0A%E2%98%90%20Inspection%20%26%20Quality%0D%0A%0D%0AAdditional%20Details%3A%0D%0A%0D%0A%0D%0ACompany%20Name%3A%0D%0AContact%20Phone%3A%0D%0ABest%20Time%20to%20Reach%20Me%3A%0D%0A%0D%0AThank%20you%21"
+                href="mailto:mtannura@chromiumind.com?subject=Inquiry%20from%20Chromium%20Industries%20Website&body=Hello%20Chromium%20Industries%20LLC%2C%0D%0A%0D%0AI%27m%20interested%20in%20learning%20more%20about%20your%20Chicago%20services.%20Please%20contact%20me%20regarding%3A%0D%0A%0D%0AServices%20I%27m%20Interested%20In%3A%0D%0A%E2%98%90%20Chrome%20Plating%20in%20Chicago%0D%0A%E2%98%90%20Cylindrical%20Grinding%20in%20Chicago%0D%0A%E2%98%90%20Thermal%20Spray%20Coatings%20in%20Chicago%0D%0A%E2%98%90%20Machining%20%26%20Fabrication%20in%20Chicago%0D%0A%E2%98%90%20Roll%20Manufacturing%20in%20Chicago%0D%0A%E2%98%90%20Inspection%20%26%20Quality%20in%20Chicago%0D%0A%0D%0AAdditional%20Details%3A%0D%0A%0D%0ACompany%20Name%3A%0D%0AContact%20Phone%3A%0D%0ABest%20Time%20to%20Reach%20Me%3A%0D%0A%0D%0AThank%20you%21"
                 className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-12 py-6 shadow-2xl transition-all hover:shadow-[0_20px_60px_rgba(59,130,246,0.5)] hover:scale-105"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
@@ -986,7 +994,7 @@ export default function Home() {
                   <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Subscribe for precision surface insights</h3>
                   <p className="text-white/80 text-base sm:text-lg md:text-xl lg:text-[1.2vw] leading-relaxed">
                     Get quarterly updates on advanced coatings, roll maintenance strategies, and success stories from
-                    manufacturers that trust Chromium Industries with their most critical production assets.
+                    manufacturers that trust Chromium Industries LLC in Chicago with their most critical production assets.
                   </p>
                 </div>
                 <form
@@ -1015,7 +1023,7 @@ export default function Home() {
             {/* Contact Button - Bottom */}
             <div className="flex justify-center">
               <a
-                href="mailto:mtannura@chromiumind.com?subject=Inquiry%20from%20Chromium%20Industries%20Website&body=Hello%20Chromium%20Industries%2C%0D%0A%0D%0AI%27m%20interested%20in%20learning%20more%20about%20your%20services.%20Please%20contact%20me%20regarding%3A%0D%0A%0D%0AServices%20I%27m%20Interested%20In%3A%0D%0A%E2%98%90%20Chrome%20Plating%0D%0A%E2%98%90%20Cylindrical%20Grinding%0D%0A%E2%98%90%20Thermal%20Spray%20Coatings%0D%0A%E2%98%90%20Machining%20%26%20Fabrication%0D%0A%E2%98%90%20Roll%20Manufacturing%0D%0A%E2%98%90%20Inspection%20%26%20Quality%0D%0A%0D%0AAdditional%20Details%3A%0D%0A%0D%0A%0D%0ACompany%20Name%3A%0D%0AContact%20Phone%3A%0D%0ABest%20Time%20to%20Reach%20Me%3A%0D%0A%0D%0AThank%20you%21"
+                href="mailto:mtannura@chromiumind.com?subject=Inquiry%20from%20Chromium%20Industries%20Website&body=Hello%20Chromium%20Industries%20LLC%2C%0D%0A%0D%0AI%27m%20interested%20in%20learning%20more%20about%20your%20Chicago%20services.%20Please%20contact%20me%20regarding%3A%0D%0A%0D%0AServices%20I%27m%20Interested%20In%3A%0D%0A%E2%98%90%20Chrome%20Plating%20in%20Chicago%0D%0A%E2%98%90%20Cylindrical%20Grinding%20in%20Chicago%0D%0A%E2%98%90%20Thermal%20Spray%20Coatings%20in%20Chicago%0D%0A%E2%98%90%20Machining%20%26%20Fabrication%20in%20Chicago%0D%0A%E2%98%90%20Roll%20Manufacturing%20in%20Chicago%0D%0A%E2%98%90%20Inspection%20%26%20Quality%20in%20Chicago%0D%0A%0D%0AAdditional%20Details%3A%0D%0A%0D%0ACompany%20Name%3A%0D%0AContact%20Phone%3A%0D%0ABest%20Time%20to%20Reach%20Me%3A%0D%0A%0D%0AThank%20you%21"
                 className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 px-12 py-6 shadow-2xl transition-all hover:shadow-[0_20px_60px_rgba(59,130,246,0.5)] hover:scale-105"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
@@ -1037,6 +1045,60 @@ export default function Home() {
         </div>
       </section>
     </main>
+
+    <footer className="bg-slate-950 text-white px-[18px] py-12 sm:py-16" aria-label="Chromium Industries LLC footer">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 sm:grid sm:grid-cols-3 sm:items-start">
+        <section aria-labelledby="footer-contact" className="space-y-3">
+          <h2 id="footer-contact" className="text-lg font-semibold uppercase tracking-[0.3em] text-white/70">
+            Contact
+          </h2>
+          <address className="not-italic text-white/80">
+            <div>Chromium Industries LLC</div>
+            <div>4645 West Chicago Ave</div>
+            <div>Chicago, IL 60651</div>
+            <div>
+              <a href="tel:17732873716" className="text-white hover:text-blue-300 transition-colors">
+                (773) 287-3716
+              </a>
+            </div>
+            <div>
+              <a href="mailto:sales@chromiumind.com" className="text-white hover:text-blue-300 transition-colors">
+                sales@chromiumind.com
+              </a>
+            </div>
+          </address>
+        </section>
+
+        <section aria-labelledby="footer-services" className="space-y-3">
+          <h2 id="footer-services" className="text-lg font-semibold uppercase tracking-[0.3em] text-white/70">
+            Chicago Services
+          </h2>
+          <ul className="space-y-2 text-white/80">
+            <li>Chrome Plating in Chicago</li>
+            <li>Cylindrical Grinding in Chicago</li>
+            <li>Thermal Spray Coatings in Chicago</li>
+            <li>Machining &amp; Fabrication in Chicago</li>
+            <li>Roll Manufacturing in Chicago</li>
+            <li>Inspection &amp; Quality in Chicago</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="footer-hours" className="space-y-3">
+          <h2 id="footer-hours" className="text-lg font-semibold uppercase tracking-[0.3em] text-white/70">
+            Hours
+          </h2>
+          <ul className="space-y-1 text-white/80">
+            <li>Mon–Fri: 7:00 AM – 6:00 PM</li>
+            <li>Sat–Sun: 8:00 AM – 12:00 PM</li>
+            <li>24/7 emergency roll service available</li>
+          </ul>
+        </section>
+      </div>
+      <div className="mx-auto mt-10 flex w-full max-w-6xl flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
+        <p>&copy; {currentYear} Chromium Industries LLC. All rights reserved.</p>
+        <p>Serving manufacturers across Chicagoland with certified HTML5 experiences.</p>
+      </div>
+    </footer>
 
     {/* Image Viewer Modal */}
     {viewerOpen && filteredGallery[currentImageIndex] && (
@@ -1091,7 +1153,7 @@ export default function Home() {
           <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 bg-slate-800">
             <Image
               src={filteredGallery[currentImageIndex].imageUrl}
-              alt={filteredGallery[currentImageIndex].title}
+              alt={`${filteredGallery[currentImageIndex].title} captured in Chicago, Illinois by Chromium Industries LLC`}
               fill
               sizes="90vw"
               className="object-contain"
