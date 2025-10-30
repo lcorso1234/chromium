@@ -77,6 +77,19 @@ export const metadata: Metadata = {
     "geo.position": "41.890248;-87.743269",
     ICBM: "41.890248, -87.743269",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      { rel: "android-chrome-192x192", url: "/android-chrome-192x192.png", sizes: "192x192" },
+    ],
+  },
 };
 
 const localBusinessSchema = {
